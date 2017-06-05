@@ -1,0 +1,26 @@
+<div class="container">
+		<div class="col-sm-12" >
+	
+			<div>
+				<table *ngIf="favarr" class="table">
+				<!--   <tr>
+				    <th>Title</th>
+				   </tr> -->
+				 
+				  <tr *ngFor="let favmovie of favarr">
+					<td class="fast">{{favmovie.title}}</td> 
+				  	<td><img [src]="'http://image.tmdb.org/t/p/w92' + favmovie.poster"/></td>
+				    <td>{{favmovie.rating}}</td> 
+				 <td>
+					 <button (click)="removefav(favmovie.id)" type="button" class="btn btn-danger">
+					 Remove </button>	
+					 <input type="text" name="rating" [(ngModel)]="favmovie.rating">
+					 <button (click)=updateRating(favmovie.id,favmovie.title,favmovie.rating,favmovie.poster)>Update</button>
+				  </td>	        
+			  </tr>
+				</table>
+			</div>
+
+	 	</div>
+	</div> 
+

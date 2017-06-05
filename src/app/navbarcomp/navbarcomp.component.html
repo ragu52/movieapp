@@ -1,0 +1,71 @@
+
+	<form class="container ">
+        		 <input type='text'  [(ngModel)]="searchString" name="searchString" placeholder="search for movies" class="form-control textbox" >
+        		 <button (click)="search()" class="btn btn-default search">
+        		 <span class="glyphicon glyphicon-search"></span>
+        		 </button>
+   			
+    		
+		</form>
+    
+			
+		
+		
+
+<div class="search-results"
+            infinite-scroll
+            debounce
+            [infiniteScrollDistance]="5000"
+            [infiniteScrollThrottle]="30"
+            (scrolled)="onScroll(searchString)"
+             >
+ <!-- <div (window:scroll)="onScroll($event)">   -->    
+
+      <!-- <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }"> ... </li>
+    </ul> -->
+               
+  
+ <div class="container">
+		<div class="search-results col-sm-12" >
+	
+			<div>
+				<table *ngIf="searchResults" class="table">
+
+				  <tr>
+				    <th>Title</th>
+				    <th>Poster</th>
+				    <th>Overview</th>
+				    <th>Rating</th>
+				  </tr>
+
+
+				  <tr *ngFor="let movie of searchResults" ><!--| paginate: { itemsPerPage: 10, currentPage: p,
+				  totalItems: searchResults.total_pages }"> -->
+				    <td class="fast">{{movie.title}}
+				    
+				    	
+
+				    <p class="genrename">{{genremethod(movie.genre_ids)}}</p>
+				    <!-- <li>
+				    		<span *ngFor="let genre of searchResults">{{genre.name}}/</span> 
+
+				   	</li> -->
+				    </td>
+				    <td><img [src]="'http://image.tmdb.org/t/p/w92' + movie.poster_path"/></td>
+				    <td class="overview">{{movie.overview}}</td>
+				    <td>{{movie.popularity}}
+				<button (click)=
+				"this.favourites.addfav(movie.title,movie.popularity,movie.id,movie.poster_path)" class="btn btn-default fav" aria-label="Left Align">
+				  <span class="glyphicon glyphicon-star" ></span>
+				</button>
+				    </td>
+			        
+			  </tr>
+				</table>
+<!-- 				  <pagination-controls (pageChange)="p = $event"></pagination-controls>	
+ -->			</div>
+
+	 	</div>
+	</div> 	
+</div>
+<router-outlet></router-outlet>
